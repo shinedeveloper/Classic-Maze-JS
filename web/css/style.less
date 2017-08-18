@@ -1,0 +1,486 @@
+/* Fonts from Google Fonts - more at https://fonts.google.com */
+//@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+//@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700');
+
+body {
+  background-color: white;
+  font-family: "Open Sans", sans-serif;
+  padding: 5px 25px;
+  font-size: 18px;
+  margin: 0;
+  color: #444;
+}
+
+h1 {
+  font-family: "Merriweather", serif;
+  font-size: 32px;
+}
+
+.invisible {
+  display: none;
+}
+
+// ----------------------------------------------------------------------------
+
+#playground {
+  position: relative;
+}
+
+#playground table {
+  border: none;
+  border-collapse: collapse;
+  background-image: url("../img/background.png");
+  background-repeat: no-repeat;
+}
+
+#playground td {
+  padding: 0;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.cell-wooden-box {
+  background-image: url("../img/wooden-box.png");
+  background-repeat: no-repeat;
+}
+.cell-stone-box {
+  background-image: url("../img/stone-box.png");
+  background-repeat: no-repeat;
+}
+.cell-wooden-triangle {
+  background-image: url("../img/wooden-triangle.png");
+  background-repeat: no-repeat;
+}
+.cell-stone-triangle {
+  background-image: url("../img/stone-triangle.png");
+  background-repeat: no-repeat;
+}
+.cell-glass-triangle {
+  background-image: url("../img/glass-triangle.png");
+  background-repeat: no-repeat;
+}
+.cell-tnt {
+  background-image: url("../img/tnt.png");
+  background-repeat: no-repeat;
+}
+
+/* Checked background for debugging
+#playground tr:nth-child(1) td:nth-child(2) {
+  background-color: aqua;
+}
+
+#playground tr:nth-child(1) td:nth-child(4) {
+  background-color: aqua;
+}
+
+#playground tr:nth-child(1) td:nth-child(6) {
+  background-color: aqua;
+}
+
+#playground tr:nth-child(1) td:nth-child(8) {
+  background-color: aqua;
+}
+
+#playground tr:nth-child(2) td:nth-child(1) {
+  background-color: aqua;
+}
+
+#playground tr:nth-child(2) td:nth-child(3) {
+  background-color: aqua;
+}
+
+#playground tr:nth-child(2) td:nth-child(5) {
+  background-color: aqua;
+}
+
+#playground tr:nth-child(2) td:nth-child(7) {
+  background-color: aqua;
+}
+
+#playground tr:nth-child(3) td:nth-child(2) {
+  background-color: aqua;
+}
+
+#playground tr:nth-child(3) td:nth-child(4) {
+  background-color: aqua;
+}
+
+#playground tr:nth-child(3) td:nth-child(6) {
+  background-color: aqua;
+}
+
+#playground tr:nth-child(3) td:nth-child(8) {
+  background-color: aqua;
+}
+*/
+
+// ----------------------------------------------------------------------------
+
+.run-button {
+  font-family: "Gotham 4r", sans-serif;
+  background-color: #a4a4a4;
+  border-radius: 4px;
+  border: 1px solid #a4a4a4;
+  color: #ffffff;
+  font-size: 1.2em;
+  margin: 10px 0;
+  padding: 11px 20px 11px 10px;
+}
+.run-button > img {
+  vertical-align: middle;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.run-button > span {
+  vertical-align: middle;
+}
+
+.play {
+  background-color: #ffa400;
+  border-color: #ffa400;
+  color: white;
+}
+.reset {
+  background-color: #0094ca;
+  border-color: #0094ca;
+  color: lightgrey;
+}
+
+// ----------------------------------------------------------------------------
+
+.communication {
+  font-family: "Gotham 4r", sans-serif;
+  font-size: 1.2em;
+  border-radius: 4px;
+  background-color: #97d28c;
+  padding: 10px;
+}
+
+.communication table {
+  border: 0;
+  border-collapse: collapse;
+}
+.communication td {
+  padding: 0;
+  margin: 0;
+}
+
+.communication .bubble-avatar {
+  margin-left: 10px;
+}
+.communication .bubble-arrow {
+  margin-left: 10px;
+}
+.communication .bubble-text {
+  border-radius: 10px;
+  background-color: #ffffff;
+  margin-left: 0;
+  padding: 20px 15px 20px 15px;
+}
+
+// ----------------------------------------------------------------------------
+
+#red {
+  position: absolute;
+  //left: 150px;
+  //top: calc(150px - 17px);
+  height: calc(200px / 3);
+  width: 50px;
+  overflow: hidden;
+  //background-color: antiquewhite;
+}
+
+.red-idle {
+  background-image: url("../img/red-idle.gif");
+  background-size: 200px calc(200px / 3);
+  background-repeat: no-repeat;
+}
+
+.red-left {
+  .red-idle;
+  background-position: -150px 0;
+}
+
+.red-right {
+  .red-idle;
+  background-position: -50px 0;
+}
+
+.red-up {
+  .red-idle;
+  background-position: 0 0;
+}
+
+.red-down {
+  .red-idle;
+  background-position: -100px 0;
+}
+
+#pig {
+  position: absolute;
+  //left: calc(250px + 6px);
+  //top: calc(100px + 8px);
+  height: calc(200px / 3);
+  width: 50px;
+  overflow: hidden;
+  //background-color: #0094ca;
+}
+
+.pig-idle {
+  background-image: url("../img/pig-idle.gif");
+  background-size: 40px;
+  background-repeat: no-repeat;
+}
+
+.pig-explode {
+  background-image: url("../img/goal.gif");
+  background-size: 50px;
+  background-repeat: no-repeat;
+}
+
+/*-----------------------------------------------------------------*/
+
+.red-move {
+  background-image: url("../img/red-move.png");
+  background-size: 200px 600px;
+  background-repeat: no-repeat;
+}
+
+.red-right-move1 {
+  .red-move;
+  background-position: -50px 0;
+}
+
+.red-right-move2 {
+  .red-move;
+  background-position: -50px calc(-200px / 3 - 1px);
+}
+
+.red-right-move3 {
+  .red-move;
+  background-position: -50px calc(-200px / 3 * 2 - 1px);
+}
+
+.red-right-move4 {
+  .red-move;
+  background-position: -50px calc(-200px / 3 * 3 - 1px);
+}
+
+.red-right-move5 {
+  .red-move;
+  background-position: -50px calc(-200px / 3 * 4 - 1px);
+}
+
+.red-right-move6 {
+  .red-move;
+  background-position: -50px calc(-200px / 3 * 5 - 1px);
+}
+
+.red-right-move7 {
+  .red-move;
+  background-position: -50px calc(-200px / 3 * 6 - 1px);
+}
+
+.red-right-move8 {
+  .red-move;
+  background-position: -50px calc(-200px / 3 * 7 - 1px);
+}
+
+.red-right-move9 {
+  .red-move;
+  background-position: -50px calc(-200px / 3 * 8 - 1px);
+}
+
+.red-left-move1 {
+  .red-move;
+  background-position: -150px 0;
+}
+
+.red-left-move2 {
+  .red-move;
+  background-position: -150px calc(-200px / 3 - 1px);
+}
+
+.red-left-move3 {
+  .red-move;
+  background-position: -150px calc(-200px / 3 * 2 - 1px);
+}
+
+.red-left-move4 {
+  .red-move;
+  background-position: -150px calc(-200px / 3 * 3 - 1px);
+}
+
+.red-left-move5 {
+  .red-move;
+  background-position: -150px calc(-200px / 3 * 4 - 1px);
+}
+
+.red-left-move6 {
+  .red-move;
+  background-position: -150px calc(-200px / 3 * 5 - 1px);
+}
+
+.red-left-move7 {
+  .red-move;
+  background-position: -150px calc(-200px / 3 * 6 - 1px);
+}
+
+.red-left-move8 {
+  .red-move;
+  background-position: -150px calc(-200px / 3 * 7 - 1px);
+}
+
+.red-left-move9 {
+  .red-move;
+  background-position: -150px calc(-200px / 3 * 8 - 1px);
+}
+
+.red-up-move1 {
+  .red-move;
+  background-position: 0 0;
+}
+
+.red-up-move2 {
+  .red-move;
+  background-position: 0 calc(-200px / 3 - 1px);
+}
+
+.red-up-move3 {
+  .red-move;
+  background-position: 0 calc(-200px / 3 * 2 - 1px);
+}
+
+.red-up-move4 {
+  .red-move;
+  background-position: 0 calc(-200px / 3 * 3 - 1px);
+}
+
+.red-up-move5 {
+  .red-move;
+  background-position: 0 calc(-200px / 3 * 4 - 1px);
+}
+
+.red-up-move6 {
+  .red-move;
+  background-position: 0 calc(-200px / 3 * 5 - 1px);
+}
+
+.red-up-move7 {
+  .red-move;
+  background-position: 0 calc(-200px / 3 * 6 - 1px);
+}
+
+.red-up-move8 {
+  .red-move;
+  background-position: 0 calc(-200px / 3 * 7 - 1px);
+}
+
+.red-up-move9 {
+  .red-move;
+  background-position: 0 calc(-200px / 3 * 8 - 1px);
+}
+
+.red-down-move1 {
+  .red-move;
+  background-position: -100px 0;
+}
+
+.red-down-move2 {
+  .red-move;
+  background-position: -100px calc(-200px / 3 - 1px);
+}
+
+.red-down-move3 {
+  .red-move;
+  background-position: -100px calc(-200px / 3 * 2 - 1px);
+}
+
+.red-down-move4 {
+  .red-move;
+  background-position: -100px calc(-200px / 3 * 3 - 1px);
+}
+
+.red-down-move5 {
+  .red-move;
+  background-position: -100px calc(-200px / 3 * 4 - 1px);
+}
+
+.red-down-move6 {
+  .red-move;
+  background-position: -100px calc(-200px / 3 * 5 - 1px);
+}
+
+.red-down-move7 {
+  .red-move;
+  background-position: -100px calc(-200px / 3 * 6 - 1px);
+}
+
+.red-down-move8 {
+  .red-move;
+  background-position: -100px calc(-200px / 3 * 7 - 1px);
+}
+
+.red-down-move9 {
+  .red-move;
+  background-position: -100px calc(-200px / 3 * 8 - 1px);
+}
+
+.red-win {
+  background-image: url("../img/avatar.png");
+  background-size: calc(3150px / 3) calc(200px / 3);
+  background-repeat: no-repeat;
+}
+
+.red-win1 {
+  .red-win;
+  background-position: -800px 0;
+}
+
+.red-win2 {
+  .red-win;
+  background-position: -850px 0;
+}
+
+.red-win3 {
+  .red-win;
+  background-position: -900px 0;
+}
+
+.red-win4 {
+  .red-win;
+  background-position: -950px 0;
+}
+
+.red-win5 {
+  .red-win;
+  background-position: -1000px 0;
+}
+
+.red-win6 {
+  .red-win;
+  background-position: -850px 0;
+}
+
+.red-win7 {
+  .red-win;
+  background-position: -900px 0;
+}
+
+.red-win8 {
+  .red-win;
+  background-position: -950px 0;
+}
+
+.red-win9 {
+  .red-win;
+  background-position: -1000px 0;
+}
+
+//-----------------------------------------------------------------------
+
+table {
+  background: none;
+}

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.sevecek</groupId>
+    <artifactId>net.sevecek.angrybirdsjs</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>AngryBirds-JS</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+
+                                <taskdef name="fmpp" classname="fmpp.tools.AntTask"/>
+                                <fmpp sourceRoot="web" outputRoot="target/dist">
+                                    <exclude name="playground-include.html"/>
+                                </fmpp>
+
+                                <delete>
+                                    <fileset dir="target/dist" includes="playground-include.html"/>
+                                    <fileset dir="target/dist" includes="js/less.js"/>
+                                    <fileset dir="target/dist" includes="css/style.less"/>
+                                </delete>
+                                
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sourceforge.fmpp</groupId>
+                        <artifactId>fmpp</artifactId>
+                        <version>0.9.15</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.freemarker</groupId>
+                        <artifactId>freemarker</artifactId>
+                        <version>2.3.23</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>org.lesscss</groupId>
+                <artifactId>lesscss-maven-plugin</artifactId>
+                <version>1.7.0.1.1</version>
+                <configuration>
+                    <sourceDirectory>${project.basedir}/web</sourceDirectory>
+                    <outputDirectory>${project.build.directory}/dist</outputDirectory>
+                    <compress>false</compress>
+                    <includes>
+                        <include>css/style.less</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngryBirds</title>
+<#if false>
+    <link rel="stylesheet/less" type="text/css" href="css/style.less"/>
+    <script src="js/less.js" type="text/javascript"></script>
+</#if>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+<body>
+
+    <h1>Level 11</h1>
+
+
+    <script>
+        function priSpusteni() {
+
+
+            // Sem vepis prikazy pro Reda
+            // Zde jsou ukazkove prikazy:
+            turnLeft();
+            turnRight();
+            moveForward();
+
+            while (notFinished()) {
+                // Opakuj prikazy zde
+                turnRight();
+            }
+
+
+        }
+    </script>
+
+
+    <#assign communicationText>Dobře, ještě jednou pro procvičení
+                        - dokážeš vyřešit tento úkol
+                        za použití pouze 4 příkazů?</#assign>
+    <#include "playground-include.html"/>
+
+
+    <script>
+        function resetModel() {
+            model.cells = [
+                [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.STONE_TRIANGLE, Cell.WOODEN_BOX],
+                [Cell.GLASS_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.STONE_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.GLASS_TRIANGLE, Cell.WOODEN_BOX],
+                [Cell.GLASS_TRIANGLE, Cell.WOODEN_BOX, Cell.GLASS_TRIANGLE, Cell.GLASS_TRIANGLE, Cell.STONE_BOX, Cell.STONE_BOX, Cell.STONE_BOX, Cell.WOODEN_BOX],
+                [Cell.WOODEN_TRIANGLE, Cell.STONE_TRIANGLE, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.STONE_BOX, Cell.STONE_BOX, Cell.WOODEN_BOX],
+                [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.STONE_TRIANGLE, Cell.GLASS_TRIANGLE, Cell.EMPTY, Cell.STONE_TRIANGLE, Cell.GLASS_TRIANGLE, Cell.WOODEN_BOX],
+                [Cell.WOODEN_BOX, Cell.GLASS_TRIANGLE, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.STONE_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_TRIANGLE],
+                [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_TRIANGLE, Cell.STONE_TRIANGLE, Cell.GLASS_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.STONE_BOX],
+                [Cell.STONE_BOX, Cell.WOODEN_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_TRIANGLE]
+            ];
+            model.bird.x = 2;
+            model.bird.y = 5;
+            model.bird.direction = BirdOrientation.RIGHT;
+            model.pig.x = 2;
+            model.pig.y = 3;
+        }
+    </script>
+    <script src="js/program.js"></script>
+
+</body>
+</html>
