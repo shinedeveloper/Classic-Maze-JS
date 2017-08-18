@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngryBirds</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+<body>
+
+    <h1>Level 17</h1>
+
+    <script>
+        function priSpusteni() {
+
+
+            // Sem vepis prikazy pro Reda
+            // Zde jsou ukazkove prikazy:
+            turnLeft();
+            turnRight();
+            moveForward();
+
+            while (notFinished()) {
+                // Opakuj prikazy zde
+                moveForward();
+            }
+
+            if (isPathLeft()) {
+                // Proved prikazy zde
+                moveForward();
+            }
+
+
+        }
+    </script>
+
+    <div id="playground">
+        <table>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <div id="red" class="red-right"></div>
+
+        <div id="pig" class="pig-idle"></div>
+
+    </div>
+
+
+    <button id="playButton" class="run-button play">
+        <img src="img/start.png">
+        <span>Spustit</span>
+    </button>
+    <button id="resetButton" class="run-button reset invisible">
+        <img src="img/running.png">
+        <span>Spuštěno</span>
+    </button>
+
+
+    <div class="communication">
+        <table>
+            <tr>
+                <td>
+                    <img class="bubble-avatar" src="img/small_static_avatar.png"/>
+                </td>
+                <td>
+                    <img class="bubble-arrow" src="img/bubble-arrow.png">
+                </td>
+                <td>
+                    <div class="bubble-text">Dobrá, pro jistotu to uděláme znovu
+                        - toto se moc neliší, ale pozor na stěny!
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <script>
+        function resetModel() {
+            model.cells = [
+                [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
+                [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
+                [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell. BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
+                [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
+                [Cell.WOODEN_BOX, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.WOODEN_BOX, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
+                [Cell.WOODEN_BOX, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
+                [Cell.WOODEN_BOX, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
+                [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX]
+            ];
+            model.bird.x = 5;
+            model.bird.y = 2;
+            model.bird.direction = BirdOrientation.RIGHT;
+            model.pig.x = 3;
+            model.pig.y = 4;
+        }
+    </script>
+    <script src="js/program.js"></script>
+
+</body>
+</html>
