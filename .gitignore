@@ -4,3 +4,6 @@ res
 /.idea/compiler.xml
 /.idea/misc.xml
 /.idea/workspace.xml
+/target/antrun
+/target/maven-archiver
+/target/*.jar
