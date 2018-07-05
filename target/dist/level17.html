@@ -33,7 +33,8 @@
         }
     </script>
 
-    <div id="playground">
+
+    <div id="gameboard">
         <table>
             <tr>
                 <td></td>
@@ -144,9 +145,7 @@
                     <img class="bubble-arrow" src="img/bubble-arrow.png">
                 </td>
                 <td>
-                    <div class="bubble-text">Dobrá, pro jistotu to uděláme znovu
-                        - toto se moc neliší, ale pozor na stěny!
-                    </div>
+                    <div class="bubble-text">---</div>
                 </td>
             </tr>
         </table>
@@ -154,8 +153,8 @@
 
 
     <script>
-        function resetModel() {
-            model.cells = [
+        function setupGameBoard() {
+            var cells = [
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell. BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
@@ -165,11 +164,10 @@
                 [Cell.WOODEN_BOX, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX]
             ];
-            model.bird.x = 5;
-            model.bird.y = 2;
-            model.bird.direction = BirdOrientation.RIGHT;
-            model.pig.x = 3;
-            model.pig.y = 4;
+            setGameBoardCells(cells);
+            setGameBoardChallengeText("Dobrá, pro jistotu to uděláme znovu - toto se moc neliší, ale pozor na stěny!");
+            setGameBoardBirdPosition(5, 2, BirdOrientation.RIGHT);
+            setGameBoardPigPosition(3, 4);
         }
     </script>
     <script src="js/program.js"></script>

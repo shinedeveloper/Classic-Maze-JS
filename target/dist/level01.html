@@ -25,7 +25,7 @@
     </script>
 
 
-    <div id="playground">
+    <div id="gameboard">
         <table>
             <tr>
                 <td></td>
@@ -136,9 +136,7 @@
                     <img class="bubble-arrow" src="img/bubble-arrow.png">
                 </td>
                 <td>
-                    <div class="bubble-text">Pomoz mi chytit
-                        to zatracené prase
-                    </div>
+                    <div class="bubble-text">---</div>
                 </td>
             </tr>
         </table>
@@ -146,8 +144,8 @@
 
 
     <script>
-        function resetModel() {
-            model.cells = [
+        function setupGameBoard() {
+            var cells = [
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
@@ -157,11 +155,10 @@
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX]
             ];
-            model.bird.x = 3;
-            model.bird.y = 2;
-            model.bird.direction = BirdOrientation.DOWN;
-            model.pig.x = 3;
-            model.pig.y = 4;
+            setGameBoardCells(cells);
+            setGameBoardChallengeText("Pomůžeš mi chytit zatracené prase? Poskládej dohromady několik bloků \"vpřed\" a stiskni tlačítko \"Spustit\".");
+            setGameBoardBirdPosition(3, 2, BirdOrientation.DOWN);
+            setGameBoardPigPosition(3, 4);
         }
     </script>
     <script src="js/program.js"></script>

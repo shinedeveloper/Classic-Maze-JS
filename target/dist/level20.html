@@ -34,7 +34,7 @@
     </script>
 
 
-    <div id="playground">
+    <div id="gameboard">
         <table>
             <tr>
                 <td></td>
@@ -145,8 +145,7 @@
                     <img class="bubble-arrow" src="img/bubble-arrow.png">
                 </td>
                 <td>
-                    <div class="bubble-text">Zvládneš přidat jen 3 příkazy na vyřešení? Když to uděláš správně, dokážu projít libovolně klikatou cestu bez ohledu na délku. Rychle! Prase se už šklebí!
-                    </div>
+                    <div class="bubble-text">---</div>
                 </td>
             </tr>
         </table>
@@ -154,8 +153,8 @@
 
 
     <script>
-        function resetModel() {
-            model.cells = [
+        function setupGameBoard() {
+            var cells = [
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
@@ -165,11 +164,10 @@
                 [Cell.WOODEN_BOX, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX]
             ];
-            model.bird.x = 1;
-            model.bird.y = 6;
-            model.bird.direction = BirdOrientation.RIGHT;
-            model.pig.x = 2;
-            model.pig.y = 1;
+            setGameBoardCells(cells);
+            setGameBoardChallengeText("Zvládneš přidat jen 3 příkazy na vyřešení? Když to uděláš správně, dokážu projít libovolně klikatou cestu bez ohledu na délku. Rychle! Prase se už šklebí!");
+            setGameBoardBirdPosition(1, 6, BirdOrientation.RIGHT);
+            setGameBoardPigPosition(2, 1);
         }
     </script>
     <script src="js/program.js"></script>

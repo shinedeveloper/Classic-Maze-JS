@@ -34,15 +34,12 @@
     </script>
 
 
-    <#assign communicationText>Dobře, ještě jednou pro procvičení
-                        - dokážeš vyřešit tento úkol
-                        za použití pouze 4 příkazů?</#assign>
-    <#include "playground-include.html"/>
+    <#include "gameboard-include.html"/>
 
 
     <script>
-        function resetModel() {
-            model.cells = [
+        function setupGameBoard() {
+            var cells = [
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.STONE_TRIANGLE, Cell.WOODEN_BOX],
                 [Cell.GLASS_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.STONE_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.GLASS_TRIANGLE, Cell.WOODEN_BOX],
                 [Cell.GLASS_TRIANGLE, Cell.WOODEN_BOX, Cell.GLASS_TRIANGLE, Cell.GLASS_TRIANGLE, Cell.STONE_BOX, Cell.STONE_BOX, Cell.STONE_BOX, Cell.WOODEN_BOX],
@@ -52,11 +49,10 @@
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_TRIANGLE, Cell.STONE_TRIANGLE, Cell.GLASS_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.STONE_BOX],
                 [Cell.STONE_BOX, Cell.WOODEN_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_TRIANGLE]
             ];
-            model.bird.x = 2;
-            model.bird.y = 5;
-            model.bird.direction = BirdOrientation.RIGHT;
-            model.pig.x = 2;
-            model.pig.y = 3;
+            setGameBoardCells(cells);
+            setGameBoardChallengeText("Dobře, ještě jednou pro procvičení - dokážeš vyřešit tento úkol za použití pouze 4 příkazů?");
+            setGameBoardBirdPosition(2, 5, BirdOrientation.RIGHT);
+            setGameBoardPigPosition(2, 3);
         }
     </script>
     <script src="js/program.js"></script>

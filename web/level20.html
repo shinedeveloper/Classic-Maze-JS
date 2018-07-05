@@ -38,128 +38,12 @@
     </script>
 
 
-    <div id="playground">
-        <table>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-
-        <div id="red" class="red-right"></div>
-
-        <div id="pig" class="pig-idle"></div>
-
-    </div>
-
-
-    <button id="playButton" class="run-button play">
-        <img src="img/start.png">
-        <span>Spustit</span>
-    </button>
-    <button id="resetButton" class="run-button reset invisible">
-        <img src="img/running.png">
-        <span>Spuštěno</span>
-    </button>
-
-
-    <div class="communication">
-        <table>
-            <tr>
-                <td>
-                    <img class="bubble-avatar" src="img/small_static_avatar.png"/>
-                </td>
-                <td>
-                    <img class="bubble-arrow" src="img/bubble-arrow.png">
-                </td>
-                <td>
-                    <div class="bubble-text">Zvládneš přidat jen 3 příkazy na vyřešení? Když to uděláš správně, dokážu projít libovolně klikatou cestu bez ohledu na délku. Rychle! Prase se už šklebí!
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
+    <#include "gameboard-include.html"/>
 
 
     <script>
-        function resetModel() {
-            model.cells = [
+        function setupGameBoard() {
+            var cells = [
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
@@ -169,11 +53,10 @@
                 [Cell.WOODEN_BOX, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX]
             ];
-            model.bird.x = 1;
-            model.bird.y = 6;
-            model.bird.direction = BirdOrientation.RIGHT;
-            model.pig.x = 2;
-            model.pig.y = 1;
+            setGameBoardCells(cells);
+            setGameBoardChallengeText("Zvládneš přidat jen 3 příkazy na vyřešení? Když to uděláš správně, dokážu projít libovolně klikatou cestu bez ohledu na délku. Rychle! Prase se už šklebí!");
+            setGameBoardBirdPosition(1, 6, BirdOrientation.RIGHT);
+            setGameBoardPigPosition(2, 1);
         }
     </script>
     <script src="js/program.js"></script>

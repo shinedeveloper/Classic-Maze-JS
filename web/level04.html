@@ -29,14 +29,12 @@
     </script>
 
 
-    <#assign communicationText>Naveď mě k zelenému zlu!
-                        (Pozor na TNT)</#assign>
-    <#include "playground-include.html"/>
+    <#include "gameboard-include.html"/>
 
 
     <script>
-        function resetModel() {
-            model.cells = [
+        function setupGameBoard() {
+            var cells = [
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
@@ -46,11 +44,10 @@
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX]
             ];
-            model.bird.x = 2;
-            model.bird.y = 4;
-            model.bird.direction = BirdOrientation.RIGHT;
-            model.pig.x = 4;
-            model.pig.y = 3;
+            setGameBoardCells(cells);
+            setGameBoardChallengeText("Naveď mě k zelenému zlu! (Pozor na TNT)");
+            setGameBoardBirdPosition(2, 4, BirdOrientation.RIGHT);
+            setGameBoardPigPosition(4, 3);
         }
     </script>
     <script src="js/program.js"></script>

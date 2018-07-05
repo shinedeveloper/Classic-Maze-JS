@@ -44,6 +44,7 @@ var model = {
         [Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY],
         [Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY]
     ],
+    challenge: "",
     bird: {x: 0, y: 0, direction: BirdOrientation.RIGHT},
     pig: {x: 7, y: 7}
 };
@@ -57,7 +58,7 @@ var resetButtonElement = document.querySelector("#resetButton");
 var bubbleElement = document.querySelector(".communication .bubble-text");
 var birdElement = document.querySelector("#red");
 var pigElement = document.querySelector("#pig");
-var playgroundTableElement = document.querySelector("#playground table");
+var gameboardTableElement = document.querySelector("#gameboard table");
 
 function disablePlayButton() {
     playButtonElement.classList.add("invisible");
@@ -73,10 +74,10 @@ function setBubbleText(text) {
     bubbleElement.innerHTML = text;
 }
 
-function showPlayground() {
+function showGameboard() {
     for (var y = 0; y < model.cells.length; y++) {
         for (var x = 0; x < model.cells[y].length; x++) {
-            var currentTdElement = playgroundTableElement.rows[y].cells.item(x);
+            var currentTdElement = gameboardTableElement.rows[y].cells.item(x);
             if (model.cells[y][x] === Cell.WOODEN_BOX) {
                 currentTdElement.className = "cell-wooden-box";
             } else if (model.cells[y][x] === Cell.STONE_BOX) {
@@ -94,6 +95,7 @@ function showPlayground() {
             }
         }
     }
+    setBubbleText(model.challenge);
     showBird();
     showPig();
 }
@@ -489,9 +491,28 @@ function turnLeft() {
 //-----------------------------------------------------------------------------
 
 function setupLevel() {
-    resetModel();
-    showPlayground();
+    setupGameBoard();
+    showGameboard();
     enablePlayButton();
+}
+
+function setGameBoardCells(cells) {
+    model.cells = cells;
+}
+
+function setGameBoardChallengeText(text) {
+    model.challenge = text;
+}
+
+function setGameBoardBirdPosition(x, y, orientation) {
+    model.bird.x = x;
+    model.bird.y = y;
+    model.bird.direction = orientation;
+}
+
+function setGameBoardPigPosition(x, y) {
+    model.pig.x = x;
+    model.pig.y = y;
 }
 
 function runLevel() {
@@ -508,7 +529,7 @@ function runLevel() {
             replayCommandQueue.add(Command.INFINITE_LOOP);
         }
     }
-    resetModel();
+    setupGameBoard();
     showReplay();
 }
 

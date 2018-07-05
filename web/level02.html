@@ -29,14 +29,12 @@
     </script>
 
 
-    <#assign communicationText>To prase mi pije krev.
-                        Pomoz mi ho dostat!</#assign>
-    <#include "playground-include.html"/>
+    <#include "gameboard-include.html"/>
 
 
     <script>
-        function resetModel() {
-            model.cells = [
+        function setupGameBoard() {
+            var cells = [
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
@@ -46,11 +44,10 @@
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX]
             ];
-            model.bird.x = 2;
-            model.bird.y = 4;
-            model.bird.direction = BirdOrientation.RIGHT;
-            model.pig.x = 5;
-            model.pig.y = 4;
+            setGameBoardCells(cells);
+            setGameBoardChallengeText("To prase mi pije krev. Pomoz mi ho dostat!");
+            setGameBoardBirdPosition(2, 4, BirdOrientation.RIGHT);
+            setGameBoardPigPosition(5, 4);
         }
     </script>
     <script src="js/program.js"></script>

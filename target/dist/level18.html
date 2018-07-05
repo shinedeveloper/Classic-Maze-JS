@@ -36,7 +36,7 @@
     </script>
 
 
-    <div id="playground">
+    <div id="gameboard">
         <table>
             <tr>
                 <td></td>
@@ -147,9 +147,7 @@
                     <img class="bubble-arrow" src="img/bubble-arrow.png">
                 </td>
                 <td>
-                    <div class="bubble-text">Příkaz <code>if () else</code> vyhodnotí podmínku
-                        a pak provede jednu věc A NEBO druhou.
-                    </div>
+                    <div class="bubble-text">---</div>
                 </td>
             </tr>
         </table>
@@ -157,8 +155,8 @@
 
 
     <script>
-        function resetModel() {
-            model.cells = [
+        function setupGameBoard() {
+            var cells = [
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
@@ -168,11 +166,10 @@
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.EMPTY, Cell.EMPTY, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX]
             ];
-            model.bird.x = 5;
-            model.bird.y = 6;
-            model.bird.direction = BirdOrientation.RIGHT;
-            model.pig.x = 0;
-            model.pig.y = 3;
+            setGameBoardCells(cells);
+            setGameBoardChallengeText("Příkaz <code>if () else</code> vyhodnotí podmínku a pak provede jednu věc A NEBO druhou.");
+            setGameBoardBirdPosition(5, 6, BirdOrientation.RIGHT);
+            setGameBoardPigPosition(0, 3);
         }
     </script>
     <script src="js/program.js"></script>

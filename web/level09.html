@@ -35,18 +35,12 @@
     </script>
 
 
-    <#assign communicationText>Příkaz <code>for ()</code>
-                        ve svém těle <code>{ }</code> obsahuje další příkazy.
-                        Může obsahovat i další <code>for ()</code>.
-                        Vnoř tímto způsobem dva cykly <code>for ()</code> do sebe
-                        a za pomoci maximálně 4 příkazů mě
-                        dostaň k praseti!</#assign>
-    <#include "playground-include.html"/>
+    <#include "gameboard-include.html"/>
 
 
     <script>
-        function resetModel() {
-            model.cells = [
+        function setupGameBoard() {
+            var cells = [
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.STONE_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.STONE_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.STONE_BOX, Cell.WOODEN_TRIANGLE, Cell.STONE_BOX, Cell.STONE_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
@@ -56,11 +50,10 @@
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.GLASS_TRIANGLE, Cell.GLASS_TRIANGLE, Cell.STONE_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_TRIANGLE],
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_TRIANGLE, Cell.STONE_BOX, Cell.STONE_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_BOX]
             ];
-            model.bird.x = 2;
-            model.bird.y = 3;
-            model.bird.direction = BirdOrientation.RIGHT;
-            model.pig.x = 2;
-            model.pig.y = 5;
+            setGameBoardCells(cells);
+            setGameBoardChallengeText("Příkaz <code>for ()</code> ve svém těle <code>{ }</code> obsahuje další příkazy. Může obsahovat i další <code>for ()</code>. Vnoř tímto způsobem dva cykly <code>for ()</code> do sebe a za pomoci maximálně 4 příkazů mě dostaň k praseti!");
+            setGameBoardBirdPosition(2, 3, BirdOrientation.RIGHT);
+            setGameBoardPigPosition(2, 5);
         }
     </script>
     <script src="js/program.js"></script>

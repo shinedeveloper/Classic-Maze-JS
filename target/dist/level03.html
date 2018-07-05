@@ -25,7 +25,7 @@
     </script>
 
 
-    <div id="playground">
+    <div id="gameboard">
         <table>
             <tr>
                 <td></td>
@@ -136,10 +136,7 @@
                     <img class="bubble-arrow" src="img/bubble-arrow.png">
                 </td>
                 <td>
-                    <div class="bubble-text">Najdi cestu
-                        a veď mě k tomu pošetilému praseti!
-                        Vyhni se TNT, nebo bude peří létat.
-                    </div>
+                    <div class="bubble-text">---</div>
                 </td>
             </tr>
         </table>
@@ -147,8 +144,8 @@
 
 
     <script>
-        function resetModel() {
-            model.cells = [
+        function setupGameBoard() {
+            var cells = [
                 [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.STONE_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.STONE_BOX, Cell.WOODEN_BOX, Cell.WOODEN_TRIANGLE, Cell.WOODEN_TRIANGLE, Cell.STONE_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.STONE_BOX, Cell.GLASS_TRIANGLE, Cell.STONE_TRIANGLE, Cell.TNT, Cell.WOODEN_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
@@ -158,11 +155,10 @@
                 [Cell.WOODEN_BOX, Cell.GLASS_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
                 [Cell.WOODEN_BOX, Cell.GLASS_TRIANGLE, Cell.WOODEN_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.STONE_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX]
             ];
-            model.bird.x = 2;
-            model.bird.y = 3;
-            model.bird.direction = BirdOrientation.RIGHT;
-            model.pig.x = 4;
-            model.pig.y = 4;
+            setGameBoardCells(cells);
+            setGameBoardChallengeText("Najdi cestu a veď mě k tomu pošetilému praseti! Vyhni se TNT, nebo bude peří létat.");
+            setGameBoardBirdPosition(2, 3, BirdOrientation.RIGHT);
+            setGameBoardPigPosition(4, 4);
         }
     </script>
     <script src="js/program.js"></script>

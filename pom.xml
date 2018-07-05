@@ -31,11 +31,11 @@
 
                                 <taskdef name="fmpp" classname="fmpp.tools.AntTask"/>
                                 <fmpp sourceRoot="web" outputRoot="target/dist">
-                                    <exclude name="playground-include.html"/>
+                                    <exclude name="gameboard-include.html"/>
                                 </fmpp>
 
                                 <delete>
-                                    <fileset dir="target/dist" includes="playground-include.html"/>
+                                    <fileset dir="target/dist" includes="gameboard-include.html"/>
                                     <fileset dir="target/dist" includes="js/less.js"/>
                                     <fileset dir="target/dist" includes="css/style.less"/>
                                 </delete>
