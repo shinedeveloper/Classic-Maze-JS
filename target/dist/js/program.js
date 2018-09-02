@@ -2,7 +2,7 @@
 // Shared
 //-----------------------------------------------------------------------------
 
-var BirdOrientation = Object.freeze({RIGHT: 0, LEFT: 1, UP: 2, DOWN: 3});
+var BirdOrientation = Object.freeze({EAST: 0, WEST: 1, NORTH: 2, SOUTH: 3});
 var Command = Object.freeze({
     MOVE_FORWARD: { ordinal: 0, detectInfiniteLoop: true },
     TURN_LEFT: { ordinal: 1, detectInfiniteLoop: true },
@@ -45,7 +45,7 @@ var model = {
         [Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY]
     ],
     challenge: "",
-    bird: {x: 0, y: 0, direction: BirdOrientation.RIGHT},
+    bird: {x: 0, y: 0, direction: BirdOrientation.EAST},
     pig: {x: 7, y: 7}
 };
 
@@ -105,18 +105,18 @@ function showBird() {
     visualBirdTop = (model.bird.y * 50);
     birdElement.style.left = visualBirdLeft + "px";
     birdElement.style.top = (visualBirdTop - 17) + "px";
-    if (model.bird.direction === BirdOrientation.RIGHT) {
+    if (model.bird.direction === BirdOrientation.EAST) {
         birdElement.className = "red-right";
-        visualBirdOrientation = BirdOrientation.RIGHT;
-    } else if (model.bird.direction === BirdOrientation.LEFT) {
+        visualBirdOrientation = BirdOrientation.EAST;
+    } else if (model.bird.direction === BirdOrientation.WEST) {
         birdElement.className = "red-left";
-        visualBirdOrientation = BirdOrientation.LEFT;
-    } else if (model.bird.direction === BirdOrientation.UP) {
+        visualBirdOrientation = BirdOrientation.WEST;
+    } else if (model.bird.direction === BirdOrientation.NORTH) {
         birdElement.className = "red-up";
-        visualBirdOrientation = BirdOrientation.UP;
-    } else if (model.bird.direction === BirdOrientation.DOWN) {
+        visualBirdOrientation = BirdOrientation.NORTH;
+    } else if (model.bird.direction === BirdOrientation.SOUTH) {
         birdElement.className = "red-down";
-        visualBirdOrientation = BirdOrientation.DOWN;
+        visualBirdOrientation = BirdOrientation.SOUTH;
     }
 }
 
@@ -130,7 +130,7 @@ function showPig() {
 //-----------------------------------------------------------------------------
 
 var visualReplayTimer;
-var visualBirdOrientation = BirdOrientation.RIGHT;
+var visualBirdOrientation = BirdOrientation.EAST;
 var visualBirdLeft = 150;
 var visualBirdTop = 150;
 var visualBirdAnimationFrame = 0;
@@ -176,50 +176,50 @@ function isReady() {
 //-----------------------------------------------------------------------------
 
 function showMove() {
-    if (visualBirdOrientation === BirdOrientation.RIGHT) {
+    if (visualBirdOrientation === BirdOrientation.EAST) {
         visualBirdAnimationFrame = 0;
         visualBirdAnimationTimer = setInterval(animateMoveRight, 100);
-    } else if (visualBirdOrientation === BirdOrientation.LEFT) {
+    } else if (visualBirdOrientation === BirdOrientation.WEST) {
         visualBirdAnimationFrame = 0;
         visualBirdAnimationTimer = setInterval(animateMoveLeft, 100);
-    } else if (visualBirdOrientation === BirdOrientation.UP) {
+    } else if (visualBirdOrientation === BirdOrientation.NORTH) {
         visualBirdAnimationFrame = 0;
         visualBirdAnimationTimer = setInterval(animateMoveUp, 100);
-    } else if (visualBirdOrientation === BirdOrientation.DOWN) {
+    } else if (visualBirdOrientation === BirdOrientation.SOUTH) {
         visualBirdAnimationFrame = 0;
         visualBirdAnimationTimer = setInterval(animateMoveDown, 100);
     }
 }
 
 function showTurnLeft() {
-    if (visualBirdOrientation === BirdOrientation.DOWN) {
+    if (visualBirdOrientation === BirdOrientation.SOUTH) {
         birdElement.className = "red-right";
-        visualBirdOrientation = BirdOrientation.RIGHT;
-    } else if (visualBirdOrientation === BirdOrientation.UP) {
+        visualBirdOrientation = BirdOrientation.EAST;
+    } else if (visualBirdOrientation === BirdOrientation.NORTH) {
         birdElement.className = "red-left";
-        visualBirdOrientation = BirdOrientation.LEFT;
-    } else if (visualBirdOrientation === BirdOrientation.RIGHT) {
+        visualBirdOrientation = BirdOrientation.WEST;
+    } else if (visualBirdOrientation === BirdOrientation.EAST) {
         birdElement.className = "red-up";
-        visualBirdOrientation = BirdOrientation.UP;
-    } else if (visualBirdOrientation === BirdOrientation.LEFT) {
+        visualBirdOrientation = BirdOrientation.NORTH;
+    } else if (visualBirdOrientation === BirdOrientation.WEST) {
         birdElement.className = "red-down";
-        visualBirdOrientation = BirdOrientation.DOWN;
+        visualBirdOrientation = BirdOrientation.SOUTH;
     }
 }
 
 function showTurnRight() {
-    if (visualBirdOrientation === BirdOrientation.UP) {
+    if (visualBirdOrientation === BirdOrientation.NORTH) {
         birdElement.className = "red-right";
-        visualBirdOrientation = BirdOrientation.RIGHT;
-    } else if (visualBirdOrientation === BirdOrientation.DOWN) {
+        visualBirdOrientation = BirdOrientation.EAST;
+    } else if (visualBirdOrientation === BirdOrientation.SOUTH) {
         birdElement.className = "red-left";
-        visualBirdOrientation = BirdOrientation.LEFT;
-    } else if (visualBirdOrientation === BirdOrientation.LEFT) {
+        visualBirdOrientation = BirdOrientation.WEST;
+    } else if (visualBirdOrientation === BirdOrientation.WEST) {
         birdElement.className = "red-up";
-        visualBirdOrientation = BirdOrientation.UP;
-    } else if (visualBirdOrientation === BirdOrientation.RIGHT) {
+        visualBirdOrientation = BirdOrientation.NORTH;
+    } else if (visualBirdOrientation === BirdOrientation.EAST) {
         birdElement.className = "red-down";
-        visualBirdOrientation = BirdOrientation.DOWN;
+        visualBirdOrientation = BirdOrientation.SOUTH;
     }
 }
 
@@ -343,19 +343,19 @@ function InfiniteLoopException() {
 }
 
 function isPathForward() {
-    if (model.bird.direction === BirdOrientation.RIGHT && model.bird.x < 8 - 1) {
+    if (model.bird.direction === BirdOrientation.EAST && model.bird.x < 8 - 1) {
         if (model.cells[model.bird.y][model.bird.x + 1] === Cell.EMPTY) {
             return true;
         }
-    } else if (model.bird.direction === BirdOrientation.UP && model.bird.y >= 1) {
+    } else if (model.bird.direction === BirdOrientation.NORTH && model.bird.y >= 1) {
         if (model.cells[model.bird.y - 1][model.bird.x] === Cell.EMPTY) {
             return true;
         }
-    } else if (model.bird.direction === BirdOrientation.LEFT && model.bird.x >= 1) {
+    } else if (model.bird.direction === BirdOrientation.WEST && model.bird.x >= 1) {
         if (model.cells[model.bird.y][model.bird.x - 1] === Cell.EMPTY) {
             return true;
         }
-    } else if (model.bird.direction === BirdOrientation.DOWN && model.bird.y < 8 - 1) {
+    } else if (model.bird.direction === BirdOrientation.SOUTH && model.bird.y < 8 - 1) {
         if (model.cells[model.bird.y + 1][model.bird.x] === Cell.EMPTY) {
             return true;
         }
@@ -365,19 +365,19 @@ function isPathForward() {
 }
 
 function isTntForward() {
-    if (model.bird.direction === BirdOrientation.RIGHT && model.bird.x < 8 - 1) {
+    if (model.bird.direction === BirdOrientation.EAST && model.bird.x < 8 - 1) {
         if (model.cells[model.bird.y][model.bird.x + 1] === Cell.TNT) {
             return true;
         }
-    } else if (model.bird.direction === BirdOrientation.UP && model.bird.y >= 1) {
+    } else if (model.bird.direction === BirdOrientation.NORTH && model.bird.y >= 1) {
         if (model.cells[model.bird.y - 1][model.bird.x] === Cell.TNT) {
             return true;
         }
-    } else if (model.bird.direction === BirdOrientation.LEFT && model.bird.x >= 1) {
+    } else if (model.bird.direction === BirdOrientation.WEST && model.bird.x >= 1) {
         if (model.cells[model.bird.y][model.bird.x - 1] === Cell.TNT) {
             return true;
         }
-    } else if (model.bird.direction === BirdOrientation.DOWN && model.bird.y < 8 - 1) {
+    } else if (model.bird.direction === BirdOrientation.SOUTH && model.bird.y < 8 - 1) {
         if (model.cells[model.bird.y + 1][model.bird.x] === Cell.TNT) {
             return true;
         }
@@ -387,19 +387,19 @@ function isTntForward() {
 }
 
 function isPathLeft() {
-    if (model.bird.direction === BirdOrientation.DOWN && model.bird.x < 8 - 1) {
+    if (model.bird.direction === BirdOrientation.SOUTH && model.bird.x < 8 - 1) {
         if (model.cells[model.bird.y][model.bird.x + 1] === Cell.EMPTY) {
             return true;
         }
-    } else if (model.bird.direction === BirdOrientation.RIGHT && model.bird.y >= 1) {
+    } else if (model.bird.direction === BirdOrientation.EAST && model.bird.y >= 1) {
         if (model.cells[model.bird.y - 1][model.bird.x] === Cell.EMPTY) {
             return true;
         }
-    } else if (model.bird.direction === BirdOrientation.UP && model.bird.x >= 1) {
+    } else if (model.bird.direction === BirdOrientation.NORTH && model.bird.x >= 1) {
         if (model.cells[model.bird.y][model.bird.x - 1] === Cell.EMPTY) {
             return true;
         }
-    } else if (model.bird.direction === BirdOrientation.LEFT && model.bird.y < 8 - 1) {
+    } else if (model.bird.direction === BirdOrientation.WEST && model.bird.y < 8 - 1) {
         if (model.cells[model.bird.y + 1][model.bird.x] === Cell.EMPTY) {
             return true;
         }
@@ -409,19 +409,19 @@ function isPathLeft() {
 }
 
 function isPathRight() {
-    if (model.bird.direction === BirdOrientation.UP && model.bird.x < 8 - 1) {
+    if (model.bird.direction === BirdOrientation.NORTH && model.bird.x < 8 - 1) {
         if (model.cells[model.bird.y][model.bird.x + 1] === Cell.EMPTY) {
             return true;
         }
-    } else if (model.bird.direction === BirdOrientation.LEFT && model.bird.y >= 1) {
+    } else if (model.bird.direction === BirdOrientation.WEST && model.bird.y >= 1) {
         if (model.cells[model.bird.y - 1][model.bird.x] === Cell.EMPTY) {
             return true;
         }
-    } else if (model.bird.direction === BirdOrientation.DOWN && model.bird.x >= 1) {
+    } else if (model.bird.direction === BirdOrientation.SOUTH && model.bird.x >= 1) {
         if (model.cells[model.bird.y][model.bird.x - 1] === Cell.EMPTY) {
             return true;
         }
-    } else if (model.bird.direction === BirdOrientation.RIGHT && model.bird.y < 8 - 1) {
+    } else if (model.bird.direction === BirdOrientation.EAST && model.bird.y < 8 - 1) {
         if (model.cells[model.bird.y + 1][model.bird.x] === Cell.EMPTY) {
             return true;
         }
@@ -435,14 +435,17 @@ function notFinished() {
 }
 
 function moveForward() {
+    if (arguments.length > 0) {
+        alert("Příkaz moveForward() nesmí být volán s parametrem.\n\nToto je chybný zápis:\nmoveForward(" + arguments[0] + ");\n\nTakto by měl být správný zápis:\nmoveForward();\n\nPokud potřebujete udělat víc kroků, zkuste cyklus.");
+    }
     if (isPathForward()) {
-        if (model.bird.direction === BirdOrientation.RIGHT) {
+        if (model.bird.direction === BirdOrientation.EAST) {
             model.bird.x = model.bird.x + 1;
-        } else if (model.bird.direction === BirdOrientation.UP) {
+        } else if (model.bird.direction === BirdOrientation.NORTH) {
             model.bird.y = model.bird.y - 1;
-        } else if (model.bird.direction === BirdOrientation.DOWN) {
+        } else if (model.bird.direction === BirdOrientation.SOUTH) {
             model.bird.y = model.bird.y + 1;
-        } else if (model.bird.direction === BirdOrientation.LEFT) {
+        } else if (model.bird.direction === BirdOrientation.WEST) {
             model.bird.x = model.bird.x - 1;
         }
         replayCommandQueue.add(Command.MOVE_FORWARD);
@@ -461,27 +464,27 @@ function moveForward() {
 }
 
 function turnRight() {
-    if (model.bird.direction === BirdOrientation.RIGHT) {
-        model.bird.direction = BirdOrientation.DOWN;
-    } else if (model.bird.direction === BirdOrientation.UP) {
-        model.bird.direction = BirdOrientation.RIGHT;
-    } else if (model.bird.direction === BirdOrientation.DOWN) {
-        model.bird.direction = BirdOrientation.LEFT;
-    } else if (model.bird.direction === BirdOrientation.LEFT) {
-        model.bird.direction = BirdOrientation.UP;
+    if (model.bird.direction === BirdOrientation.EAST) {
+        model.bird.direction = BirdOrientation.SOUTH;
+    } else if (model.bird.direction === BirdOrientation.NORTH) {
+        model.bird.direction = BirdOrientation.EAST;
+    } else if (model.bird.direction === BirdOrientation.SOUTH) {
+        model.bird.direction = BirdOrientation.WEST;
+    } else if (model.bird.direction === BirdOrientation.WEST) {
+        model.bird.direction = BirdOrientation.NORTH;
     }
     replayCommandQueue.add(Command.TURN_RIGHT);
 }
 
 function turnLeft() {
-    if (model.bird.direction === BirdOrientation.RIGHT) {
-        model.bird.direction = BirdOrientation.UP;
-    } else if (model.bird.direction === BirdOrientation.UP) {
-        model.bird.direction = BirdOrientation.LEFT;
-    } else if (model.bird.direction === BirdOrientation.DOWN) {
-        model.bird.direction = BirdOrientation.RIGHT;
-    } else if (model.bird.direction === BirdOrientation.LEFT) {
-        model.bird.direction = BirdOrientation.DOWN;
+    if (model.bird.direction === BirdOrientation.EAST) {
+        model.bird.direction = BirdOrientation.NORTH;
+    } else if (model.bird.direction === BirdOrientation.NORTH) {
+        model.bird.direction = BirdOrientation.WEST;
+    } else if (model.bird.direction === BirdOrientation.SOUTH) {
+        model.bird.direction = BirdOrientation.EAST;
+    } else if (model.bird.direction === BirdOrientation.WEST) {
+        model.bird.direction = BirdOrientation.SOUTH;
     }
     replayCommandQueue.add(Command.TURN_LEFT);
 }
