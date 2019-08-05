@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngryBirds</title>
+<#if false>
+    <link rel="stylesheet/less" type="text/css" href="../css/style.less"/>
+    <script src="../js/less.js" type="text/javascript"></script>
+</#if>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+</head>
+<body>
+
+    <h1>Level 18</h1>
+
+
+    <#include "gameboard-include.html"/>
+
+
+    <script>
+        function setupGameBoard() {
+            var cells = [
+                [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
+                [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
+                [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
+                [Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.WOODEN_BOX],
+                [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.EMPTY, Cell.WOODEN_BOX],
+                [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.EMPTY, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.EMPTY, Cell.WOODEN_BOX],
+                [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.EMPTY, Cell.EMPTY, Cell.WOODEN_BOX],
+                [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX]
+            ];
+            setGameBoardCells(cells);
+            setGameBoardChallengeText("Příkaz <code>if () else</code> vyhodnotí podmínku a pak provede jednu věc A NEBO druhou.");
+            setGameBoardBirdPosition(5, 6, BirdOrientation.EAST);
+            setGameBoardPigPosition(0, 3);
+            setUserCodeName("level18.js");
+        }
+    </script>
+    <script src="../js/program.js"></script>
+
+</body>
+</html>

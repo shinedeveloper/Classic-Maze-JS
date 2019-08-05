@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngryBirds</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+</head>
+<body>
+
+    <h1>Level 10</h1>
+
+
+    <div id="gameboard">
+        <table>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <div id="red" class="red-right"></div>
+
+        <div id="pig" class="pig-idle"></div>
+
+    </div>
+
+
+    <button id="playButton" class="run-button play">
+        <img src="../img/start.png">
+        <span>Spustit</span>
+    </button>
+    <button id="runningButton" class="run-button run invisible">
+        <img src="../img/running.png">
+        <span>Běží</span>
+    </button>
+    <button id="resetButton" class="run-button reset invisible">
+        <img src="../img/reset.png">
+        <span>Znovu</span>
+    </button>
+
+
+    <div class="communication">
+        <table>
+            <tr>
+                <td>
+                    <img class="bubble-avatar" src="../img/small_static_avatar.png"/>
+                </td>
+                <td>
+                    <img class="bubble-arrow" src="../img/bubble-arrow.png">
+                </td>
+                <td>
+                    <div class="bubble-text">---</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <p class="level-block">
+        Levely:
+        <a href="level01.html" class="level-link">1</a>
+        <a href="level02.html" class="level-link">2</a>
+        <a href="level03.html" class="level-link">3</a>
+        <a href="level04.html" class="level-link">4</a>
+        <a href="level05.html" class="level-link">5</a>
+        <a href="level06.html" class="level-link">6</a>
+        <a href="level07.html" class="level-link">7</a>
+        <a href="level08.html" class="level-link">8</a>
+        <a href="level09.html" class="level-link">9</a>
+        <a href="level10.html" class="level-link">10</a>
+        <a href="level11.html" class="level-link">11</a>
+        <a href="level12.html" class="level-link">12</a>
+        <a href="level13.html" class="level-link">13</a>
+        <a href="level14.html" class="level-link">14</a>
+        <a href="level15.html" class="level-link">15</a>
+        <a href="level16.html" class="level-link">16</a>
+        <a href="level17.html" class="level-link">17</a>
+        <a href="level18.html" class="level-link">18</a>
+        <a href="level19.html" class="level-link">19</a>
+        <a href="level20.html" class="level-link">20</a>
+    </p>
+
+
+    <script>
+        function setupGameBoard() {
+            var cells = [
+                [Cell.STONE_TRIANGLE, Cell.STONE_TRIANGLE, Cell.GLASS_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.STONE_BOX],
+                [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_TRIANGLE, Cell.GLASS_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
+                [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.STONE_TRIANGLE, Cell.WOODEN_BOX, Cell.GLASS_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
+                [Cell.GLASS_TRIANGLE, Cell.STONE_TRIANGLE, Cell.STONE_TRIANGLE, Cell.STONE_TRIANGLE, Cell.GLASS_TRIANGLE, Cell.WOODEN_TRIANGLE, Cell.STONE_BOX, Cell.WOODEN_BOX],
+                [Cell.WOODEN_TRIANGLE, Cell.EMPTY, Cell. EMPTY, Cell.EMPTY, Cell.EMPTY, Cell. EMPTY, Cell.EMPTY, Cell.STONE_BOX],
+                [Cell.GLASS_TRIANGLE, Cell.GLASS_TRIANGLE, Cell.GLASS_TRIANGLE, Cell.WOODEN_TRIANGLE, Cell.GLASS_TRIANGLE, Cell.GLASS_TRIANGLE, Cell.WOODEN_TRIANGLE, Cell.GLASS_TRIANGLE],
+                [Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.STONE_BOX, Cell.WOODEN_BOX, Cell.WOODEN_TRIANGLE, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX],
+                [Cell.WOODEN_BOX, Cell.STONE_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.WOODEN_BOX, Cell.STONE_BOX, Cell.WOODEN_BOX, Cell.GLASS_TRIANGLE]
+            ];
+            setGameBoardCells(cells);
+            setGameBoardChallengeText("Dobře. Zkus nový příkaz <code>while ()</code> - opakovat, dokud platí, že nechytím to otravné prase.");
+            setGameBoardBirdPosition(1, 4, BirdOrientation.EAST);
+            setGameBoardPigPosition(6, 4);
+            setUserCodeName("level10.js");
+        }
+    </script>
+    <script src="../js/program.js"></script>
+
+</body>
+</html>

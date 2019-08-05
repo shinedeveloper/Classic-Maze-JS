@@ -49,25 +49,36 @@ var model = {
     pig: {x: 7, y: 7}
 };
 
+var userCodeName;
+
 //-----------------------------------------------------------------------------
 // General Visual
 //-----------------------------------------------------------------------------
 
 var playButtonElement = document.querySelector("#playButton");
+var runningButtonElement = document.querySelector("#runningButton");
 var resetButtonElement = document.querySelector("#resetButton");
 var bubbleElement = document.querySelector(".communication .bubble-text");
 var birdElement = document.querySelector("#red");
 var pigElement = document.querySelector("#pig");
 var gameboardTableElement = document.querySelector("#gameboard table");
 
-function disablePlayButton() {
-    playButtonElement.classList.add("invisible");
-    resetButtonElement.classList.remove("invisible");
-}
-
 function enablePlayButton() {
     playButtonElement.classList.remove("invisible");
+    runningButtonElement.classList.add("invisible");
     resetButtonElement.classList.add("invisible");
+}
+
+function disablePlayButton() {
+    playButtonElement.classList.add("invisible");
+    runningButtonElement.classList.remove("invisible");
+    resetButtonElement.classList.add("invisible");
+}
+
+function resetPlayButton() {
+    playButtonElement.classList.add("invisible");
+    runningButtonElement.classList.add("invisible");
+    resetButtonElement.classList.remove("invisible");
 }
 
 function setBubbleText(text) {
@@ -123,6 +134,7 @@ function showBird() {
 function showPig() {
     pigElement.style.left = (model.pig.x * 50 + 6) + "px";
     pigElement.style.top = (model.pig.y * 50 + 8) + "px";
+    pigElement.className = "pig-idle";
 }
 
 //-----------------------------------------------------------------------------
@@ -165,6 +177,7 @@ function replayOneStep() {
             }
         } else {
             clearInterval(visualReplayTimer);
+            reset();
         }
     }
 }
@@ -224,9 +237,7 @@ function showTurnRight() {
 }
 
 function showPigExplode() {
-    pigElement.style.left = "250px";
-    pigElement.style.top = "100px";
-    pigElement.className = "pig-showPigExplode";
+    pigElement.className = "pig-explode";
     visualBirdAnimationFrame = 0;
     visualBirdAnimationTimer = setInterval(animateWin, 100);
 }
@@ -518,8 +529,36 @@ function setGameBoardPigPosition(x, y) {
     model.pig.y = y;
 }
 
+function setUserCodeName(fileName) {
+    userCodeName = fileName;
+}
+
 function runLevel() {
     disablePlayButton();
+    loadUserCode();
+}
+
+function loadUserCode() {
+    var allScriptElements = document.querySelectorAll(".code-holder");
+    console.log(allScriptElements.length);
+    for (var i = 0; i < allScriptElements.length; i++) {
+        var element = allScriptElements[i];
+        element.parentNode.removeChild(element);
+    }
+
+    if (userCodeName !== undefined) {
+        var headElement = document.getElementsByTagName("head")[0];
+        var scriptElement = document.createElement("script");
+        scriptElement.src = "../" + userCodeName + "?cacheBust=" + Math.round(Math.random() * 10000);
+        scriptElement.className = "code-holder";
+        scriptElement.onload = function () {
+            executeLevel();
+        }
+        headElement.appendChild(scriptElement);
+    }
+}
+
+function executeLevel() {
     try {
         priSpusteni();
         replayCommandQueue.add(Command.NOT_YET_THERE);
@@ -536,6 +575,15 @@ function runLevel() {
     showReplay();
 }
 
+function reset() {
+    resetPlayButton();
+    // setupLevel();
+}
+
+function resetLevel() {
+    setupLevel();
+}
 
 playButtonElement.addEventListener("click", runLevel);
+resetButtonElement.addEventListener("click", resetLevel);
 setupLevel();
